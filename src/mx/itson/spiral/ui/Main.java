@@ -83,6 +83,8 @@ public class Main extends javax.swing.JFrame {
             }
         });
 
+        Tabla.setBackground(new java.awt.Color(0, 153, 153));
+
         tblClima.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         tblClima.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -96,6 +98,7 @@ public class Main extends javax.swing.JFrame {
 
         Tabla.addTab("Tabla", jScrollPane1);
 
+        jPanel1.setBackground(new java.awt.Color(0, 153, 153));
         jPanel1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jPanel1.setPreferredSize(new java.awt.Dimension(950, 500));
 
@@ -307,6 +310,8 @@ public class Main extends javax.swing.JFrame {
         );
 
         Tabla.addTab("Estadísticos", jPanel1);
+
+        jMenuBar1.setBackground(new java.awt.Color(0, 153, 153));
 
         jMenu1.setText("Opciones del clima");
         jMenuBar1.add(jMenu1);
