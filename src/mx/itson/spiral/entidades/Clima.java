@@ -15,8 +15,9 @@ import java.util.List;
 import mx.itson.spiral.persistencia.Conexion;
 
 /**
- *
- * @author jesus
+ * Contiene los atributos de la clase Clima y metodos utilizados para el CRUD
+ * basico y otras operaciones.
+ * @author Jesús Leal, Axel Valdez, Gabriel Leyva
  */
 public class Clima {
 
@@ -28,9 +29,9 @@ public class Clima {
     private String vientoDireccion;
 
     /**
-     * Obtiene los registros de computadora existentes en la base de datos.
-     *
-     * @return Lista de computadoras.
+     * Obtiene los registros de la tabla Clima existentes en la base de datos.
+     * 
+     * @return Lista de Clima.
      */
     public static List<Clima> obtener() {
         List<Clima> clima = new ArrayList<>();
@@ -57,6 +58,15 @@ public class Clima {
         return clima;
     }
 
+    /**
+     * Guarda los datos obtenidos en la tabla Clima.
+     * @param municipio Municipio donde se registraron los datos
+     * @param fecha Fecha en la que se registraron dichos datos
+     * @param clima El clima que habia en el momento.
+     * @param grados Los grados celsius.
+     * @param viento La dirección del viento.
+     * @return Retorna un valor que especifica si se ha hecho un cambio.
+     */
     public static boolean guardar(String municipio, Date fecha, String clima, Double grados, String viento) {
         boolean resultado = false;
         
@@ -84,6 +94,16 @@ public class Clima {
         return resultado;
     }
     
+    /**
+     * Edita los datos seleccionados de un reglon de la tabla.
+     * @param id Id del reglon.
+     * @param municipio Municipio del reglon seleccionado.
+     * @param fecha Fecha del reglon seleccionado.
+     * @param clima Clima del reglon seleccionado.
+     * @param grados Grados celsius del reglon seleccionado.
+     * @param viento Dirección del viento del reglon seleccionado.
+     * @return Retorna un valor que especifica si se ha hecho un cambio.
+     */
     public static boolean editar(int id, String municipio, Date fecha, String clima, Double grados, String viento) {
         boolean resultado = false;
         
@@ -112,6 +132,11 @@ public class Clima {
         return resultado;
     }
     
+    /**
+     * Elimina un reglon seleccionado de la tabla.
+     * @param id Id del reglon seleccionado.
+     * @return Retorna un valor que especifica si se ha hecho un cambio.
+     */
     public static boolean eliminar(int id) {
         boolean resultado = false;
         
@@ -132,6 +157,11 @@ public class Clima {
         return resultado;
     }
     
+    /**
+     * Este metodo obtiene la información de un reglon a partir de su ID
+     * @param id El id del objeto guardado en el reglon.
+     * @return Retonra la información obtenida del reglon.
+     */
     public static Clima obtenerPorId(int id) {
 
         Clima c = new Clima();
@@ -160,96 +190,96 @@ public class Clima {
     }
 
     /**
-     *
-     * @return
+     * Obtiene el id
+     * @return El id
      */
     public int getId() {
         return id;
     }
 
     /**
-     *
-     * @param id
+     * Le da un valor a id
+     * @param id ID
      */
     public void setId(int id) {
         this.id = id;
     }
 
     /**
-     *
-     * @return
+     * Obtiene el municipio
+     * @return El municipio
      */
     public String getMunicipio() {
         return municipio;
     }
 
     /**
-     *
-     * @param municipio
+     * Le da un valor a municipio
+     * @param municipio El municipio
      */
     public void setMunicipio(String municipio) {
         this.municipio = municipio;
     }
 
     /**
-     *
-     * @return
+     * Obtiene el valor de fecha
+     * @return La fecha
      */
     public Date getFecha() {
         return fecha;
     }
 
     /**
-     *
-     * @param fecha
+     * Le da un valor a la fecha
+     * @param fecha La fehca
      */
     public void setFecha(Date fecha) {
         this.fecha = fecha;
     }
 
     /**
-     *
-     * @return
+     * Obtiene el valor del clima
+     * @return El clima
      */
     public String getClima() {
         return clima;
     }
 
     /**
-     *
-     * @param clima
+     * Le da un valor a clima
+     * @param clima El clima
      */
     public void setClima(String clima) {
         this.clima = clima;
     }
 
     /**
-     *
-     * @return
+     * Obtiene el valor de los grados
+     * @return Los grados
      */
     public double getGradosCelsius() {
         return gradosCelsius;
     }
 
     /**
-     *
-     * @param gradosCelsius
+     * Le da un valor a los grados
+     * @param gradosCelsius Los grados
      */
     public void setGradosCelsius(double gradosCelsius) {
         this.gradosCelsius = gradosCelsius;
     }
 
     /**
-     *
-     * @return
+     * Obtiene el valor del viento
+     * @return El viento
      */
     public String getVientoDireccion() {
         return vientoDireccion;
     }
 
     /**
-     *
-     * @param vientoDireccion
+     * Le da un valor a viento
+     * @param vientoDireccion El viento
      */
     public void setVientoDireccion(String vientoDireccion) {
         this.vientoDireccion = vientoDireccion;

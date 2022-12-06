@@ -17,7 +17,7 @@ public class Conexion {
      public static Connection obtener(){
         Connection conexion = null;
         try {
-            conexion = DriverManager.getConnection("jdbc:mysql://localhost/spiraldb?user=root&password=2215294atvm");
+            conexion = DriverManager.getConnection("jdbc:mysql://localhost/spiraldb?user=root&password=soyElAdministrador");
         } catch (Exception ex){
             System.err.println("Ocurrió un error: " + ex.getMessage());
         }

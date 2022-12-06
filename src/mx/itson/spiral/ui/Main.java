@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package mx.itson.spiral.ui;
 
 import java.text.DecimalFormat;
@@ -17,8 +12,8 @@ import org.jfree.chart.plot.PlotOrientation;
 import org.jfree.data.category.DefaultCategoryDataset;
 
 /**
- *
- * @author jesus
+ * La clase main y la interfaz de usuario
+ * @author Jesús Leal, Axel Valdez, Gabriel Leyva
  */
 public class Main extends javax.swing.JFrame {
 
