@@ -40,6 +40,11 @@ public class Main extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         cmbMunicipio = new javax.swing.JComboBox<>();
         btnGenerar = new javax.swing.JButton();
+        lblNublado = new javax.swing.JLabel();
+        lblSoleados = new javax.swing.JLabel();
+        lblLluviosos = new javax.swing.JLabel();
+        lblParcial = new javax.swing.JLabel();
+        lblVentosos = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         mnuEdicion = new javax.swing.JMenu();
@@ -84,6 +89,21 @@ public class Main extends javax.swing.JFrame {
             }
         });
 
+        lblNublado.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        lblNublado.setText("Dias nublados: ");
+
+        lblSoleados.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        lblSoleados.setText("Dias soleados: ");
+
+        lblLluviosos.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        lblLluviosos.setText("Dias lluviosos: ");
+
+        lblParcial.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        lblParcial.setText("Dias parcialmente nublados: ");
+
+        lblVentosos.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        lblVentosos.setText("Dias ventosos: ");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -93,9 +113,18 @@ public class Main extends javax.swing.JFrame {
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(cmbMunicipio, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 580, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 550, Short.MAX_VALUE)
                 .addComponent(btnGenerar)
                 .addGap(28, 28, 28))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(15, 15, 15)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lblVentosos)
+                    .addComponent(lblLluviosos)
+                    .addComponent(lblNublado)
+                    .addComponent(lblSoleados)
+                    .addComponent(lblParcial))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -105,7 +134,17 @@ public class Main extends javax.swing.JFrame {
                     .addComponent(jLabel1)
                     .addComponent(cmbMunicipio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnGenerar))
-                .addContainerGap(426, Short.MAX_VALUE))
+                .addGap(38, 38, 38)
+                .addComponent(lblNublado)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(lblSoleados)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(lblLluviosos)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(lblParcial)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(lblVentosos)
+                .addContainerGap(223, Short.MAX_VALUE))
         );
 
         Tabla.addTab("Estadísticos", jPanel1);
@@ -171,7 +210,7 @@ public class Main extends javax.swing.JFrame {
         List<Clima> clima = Clima.obtener();
         DefaultTableModel modelo = (DefaultTableModel) tblClima.getModel();
         modelo.setRowCount(0);
-
+        
         for (Clima c : clima) {
             modelo.addRow(new Object[]{
                 c.getId(),
@@ -184,70 +223,70 @@ public class Main extends javax.swing.JFrame {
     }
 
     private void btnAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarActionPerformed
-
+        
         try {
             ClimaForm form = new ClimaForm(this, true, 0);
             form.setVisible(true);
-
+            
             cargarTable();
-
+            
         } catch (Exception e) {
         }
     }//GEN-LAST:event_btnAgregarActionPerformed
 
     private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
-
+        
         try {
             int reglon = tblClima.getSelectedRow();
             int idClima = Integer.parseInt(tblClima.getModel().getValueAt(reglon, 0).toString());
-
+            
             int decision = JOptionPane.showConfirmDialog(this, "¿Realmente deseas eliminar?", "Confirmar eliminación", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
-
+            
             System.out.println(decision);
-
+            
             if (decision == 0) {
-
+                
                 boolean resultado = Clima.eliminar(idClima);
-
+                
                 if (resultado) {
-
+                    
                     JOptionPane.showMessageDialog(this, "El registro se eliminó correctamente", "Registro eliminado", JOptionPane.INFORMATION_MESSAGE);
-
+                    
                 } else {
-
+                    
                     JOptionPane.showMessageDialog(this, "Ocurrió un error al intentar eliminar el registro", "Error al eliminar", JOptionPane.ERROR_MESSAGE);
-
+                    
                 }
-
+                
                 cargarTable();
-
+                
             } else if (decision == 1) {
-
+                
                 JOptionPane.showMessageDialog(this, "El registro no se eliminó", "Registro eliminado", JOptionPane.INFORMATION_MESSAGE);
-
+                
                 cargarTable();
             }
-
+            
         } catch (Exception e) {
         }
     }//GEN-LAST:event_btnEliminarActionPerformed
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
-
+        
         cargarTable();
         tblClima.removeColumn(tblClima.getColumnModel().getColumn(0));
 
     }//GEN-LAST:event_formWindowOpened
 
     private void btnEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarActionPerformed
-
+        
         try {
             int reglon = tblClima.getSelectedRow();
             int idClima = Integer.parseInt(tblClima.getModel().getValueAt(reglon, 0).toString());
-
+            
             ClimaForm form = new ClimaForm(this, true, idClima);
             form.setVisible(true);
-
+            
             cargarTable();
         } catch (Exception e) {
         }
@@ -259,8 +298,43 @@ public class Main extends javax.swing.JFrame {
     }//GEN-LAST:event_cmbMunicipioActionPerformed
 
     private void btnGenerarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGenerarActionPerformed
-
-
+        int soleado = 0;
+        int nublado = 0;
+        int lluvioso = 0;
+        int ventoso = 0;
+        int parcial = 0;
+        
+        int contar = tblClima.getRowCount();
+        String clima = "";
+        for (int i = 0; i < contar; i++) {
+            clima = tblClima.getValueAt(i, 2).toString();
+            System.out.println(clima);
+            switch (clima) {
+                case "Soleado":
+                    soleado++;
+                    break;
+                case "Nublado":
+                    nublado++;
+                    break;
+                case "Lluvioso":
+                    lluvioso++;
+                    break;
+                case "Ventoso":
+                    ventoso++;
+                    break;
+                case "Parcialmente nublado":
+                    parcial++;
+                    break;
+                default:
+                    throw new AssertionError();
+            }
+        }
+        
+        lblLluviosos.setText("Dias lluviosos: " + Integer.toString(lluvioso));
+        lblNublado.setText("Dias nublados: " + Integer.toString(nublado));
+        lblSoleados.setText("Dias soleados: " + Integer.toString(soleado));
+        lblVentosos.setText("Dias ventosos: " + Integer.toString(ventoso));
+        lblParcial.setText("Dias parcialmente nublados: " + Integer.toString(parcial));
     }//GEN-LAST:event_btnGenerarActionPerformed
 
     /**
@@ -311,6 +385,11 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator1;
+    private javax.swing.JLabel lblLluviosos;
+    private javax.swing.JLabel lblNublado;
+    private javax.swing.JLabel lblParcial;
+    private javax.swing.JLabel lblSoleados;
+    private javax.swing.JLabel lblVentosos;
     private javax.swing.JMenu mnuEdicion;
     private javax.swing.JTable tblClima;
     // End of variables declaration//GEN-END:variables
