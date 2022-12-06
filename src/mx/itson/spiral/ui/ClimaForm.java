@@ -25,8 +25,6 @@ public class ClimaForm extends javax.swing.JDialog {
         initComponents();
         this.id = id;
         
-        SimpleDateFormat formato = new SimpleDateFormat("yyyy-MM-dd"); 
-        
         if(id != 0){
             
             Clima c = Clima.obtenerPorId(id);

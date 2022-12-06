@@ -98,7 +98,7 @@ public class Clima {
             statement.setString(3, clima);
             statement.setDouble(4, grados);
             statement.setString(5, viento);
-            statement.setInt(8, id);
+            statement.setInt(6, id);
             
             statement.execute();
             
