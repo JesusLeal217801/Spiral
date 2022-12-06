@@ -5,10 +5,16 @@
  */
 package mx.itson.spiral.ui;
 
+import java.text.DecimalFormat;
 import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import mx.itson.spiral.entidades.Clima;
+import org.jfree.chart.ChartFactory;
+import org.jfree.chart.ChartPanel;
+import org.jfree.chart.JFreeChart;
+import org.jfree.chart.plot.PlotOrientation;
+import org.jfree.data.category.DefaultCategoryDataset;
 
 /**
  *
@@ -21,6 +27,7 @@ public class Main extends javax.swing.JFrame {
      */
     public Main() {
         initComponents();
+
     }
 
     /**
@@ -40,11 +47,28 @@ public class Main extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         cmbMunicipio = new javax.swing.JComboBox<>();
         btnGenerar = new javax.swing.JButton();
+        lblLluvioso = new javax.swing.JLabel();
+        lblVentoso = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
+        lblPromedio = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
+        lblSoleado = new javax.swing.JLabel();
         lblNublado = new javax.swing.JLabel();
-        lblSoleados = new javax.swing.JLabel();
-        lblLluviosos = new javax.swing.JLabel();
         lblParcial = new javax.swing.JLabel();
-        lblVentosos = new javax.swing.JLabel();
+        jLabel16 = new javax.swing.JLabel();
+        jLabel18 = new javax.swing.JLabel();
+        jLabel13 = new javax.swing.JLabel();
+        lblNorte = new javax.swing.JLabel();
+        lblSur = new javax.swing.JLabel();
+        lblEste = new javax.swing.JLabel();
+        lblOeste = new javax.swing.JLabel();
+        jLabel14 = new javax.swing.JLabel();
+        jLabel15 = new javax.swing.JLabel();
+        jLabel17 = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         mnuEdicion = new javax.swing.JMenu();
@@ -76,6 +100,7 @@ public class Main extends javax.swing.JFrame {
 
         jLabel1.setText("Municipio");
 
+        cmbMunicipio.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Selecciona un municipio", "Aconchi", "Agua Prieta", "Álamos", "Altar", "Arivechi", "Arizpe", "Atil", "Bacadéhuachi", "Bacanora", "Bacerac", "Bacoachi", "Bácum", "Banámichi", "Baviácora", "Bavispe", "Benito Juárez", "Benjamín Hill", "Caborca", "Cajeme", "Cananea", "Carbó", "Cucurpe", "Cumpas", "Divisaderos", "Empalme", "Etchojoa", "Fronteras", "General Plutarco Elías Calles", "Granados", "Guaymas", "Hermosillo", "Huachinera", "Huásabas", "Huatabampo", "Huépac", "Imuris", "La Colorada", "Magdalena", "Mazatán", "Moctezuma", "Naco", "Nácori Chico", "Nacozari", "Navojoa", "Nogales", "Onavas", "Opodepe", "Oquitoa", "Pitiquito", "Puerto Peñasco", "Quiriego", "Rayón", "Rosario", "Sahuaripa", "San Felipe de Jesús", "San Ignacio Río Muerto", "San Javier", "San Luis Río Colorado", "San Miguel de Horcasitas", "San Pedro de la Cueva", "Santa Ana", "Santa Cruz", "Sáric", "Soyopa", "Suaqui Grande", "Tepache", "Trincheras", "Tubutama", "Ures", "Villa Hidalgo", "Villa Pesqueira", "Yécora" }));
         cmbMunicipio.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cmbMunicipioActionPerformed(evt);
@@ -89,42 +114,136 @@ public class Main extends javax.swing.JFrame {
             }
         });
 
-        lblNublado.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        lblNublado.setText("Dias nublados: ");
+        lblLluvioso.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        lblLluvioso.setText("---");
 
-        lblSoleados.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        lblSoleados.setText("Dias soleados: ");
+        lblVentoso.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        lblVentoso.setText("---");
 
-        lblLluviosos.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        lblLluviosos.setText("Dias lluviosos: ");
+        jLabel7.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jLabel7.setText("Promedio:");
 
-        lblParcial.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        lblParcial.setText("Dias parcialmente nublados: ");
+        lblPromedio.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        lblPromedio.setText("---");
 
-        lblVentosos.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        lblVentosos.setText("Dias ventosos: ");
+        jLabel2.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jLabel2.setText("Soleado");
+
+        jLabel3.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jLabel3.setText("Nublado");
+
+        jLabel4.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jLabel4.setText("Parcialmente nublado");
+
+        jLabel5.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jLabel5.setText("Lluvioso");
+
+        jLabel6.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jLabel6.setText("Ventoso");
+
+        lblSoleado.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        lblSoleado.setText("---");
+
+        lblNublado.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        lblNublado.setText("---");
+
+        lblParcial.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        lblParcial.setText("---");
+
+        jLabel16.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel16.setText("Dias con estos climas:");
+
+        jLabel18.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel18.setText("Dias con direccion del viento:");
+
+        jLabel13.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jLabel13.setText("Oeste");
+
+        lblNorte.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        lblNorte.setText("---");
+
+        lblSur.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        lblSur.setText("---");
+
+        lblEste.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        lblEste.setText("---");
+
+        lblOeste.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        lblOeste.setText("---");
+
+        jLabel14.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jLabel14.setText("Norte");
+
+        jLabel15.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jLabel15.setText("Sur");
+
+        jLabel17.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jLabel17.setText("Este");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel14)
+                            .addComponent(jLabel15))
+                        .addGap(71, 71, 71)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(lblNorte, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(lblSur, javax.swing.GroupLayout.Alignment.TRAILING)))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel13, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel17, javax.swing.GroupLayout.Alignment.TRAILING))
+                        .addGap(71, 71, 71)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(lblEste, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(lblOeste, javax.swing.GroupLayout.Alignment.TRAILING))))
+                .addGap(100, 100, 100))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(cmbMunicipio, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 550, Short.MAX_VALUE)
-                .addComponent(btnGenerar)
-                .addGap(28, 28, 28))
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(15, 15, 15)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lblVentosos)
-                    .addComponent(lblLluviosos)
-                    .addComponent(lblNublado)
-                    .addComponent(lblSoleados)
-                    .addComponent(lblParcial))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel7)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(lblPromedio)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(cmbMunicipio, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 574, Short.MAX_VALUE)
+                        .addComponent(btnGenerar)
+                        .addGap(28, 28, 28))))
+            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel1Layout.createSequentialGroup()
+                    .addGap(97, 97, 97)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(jPanel1Layout.createSequentialGroup()
+                            .addGap(16, 16, 16)
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addComponent(jLabel6)
+                                .addComponent(jLabel5)
+                                .addComponent(jLabel4)
+                                .addComponent(jLabel3)
+                                .addComponent(jLabel2))
+                            .addGap(71, 71, 71)
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(lblSoleado, javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addComponent(lblNublado, javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addComponent(lblParcial, javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addComponent(lblLluvioso, javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addComponent(lblVentoso, javax.swing.GroupLayout.Alignment.TRAILING))
+                            .addGap(417, 417, 417))
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                            .addComponent(jLabel16)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLabel18)))
+                    .addGap(97, 97, 97)))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -134,17 +253,56 @@ public class Main extends javax.swing.JFrame {
                     .addComponent(jLabel1)
                     .addComponent(cmbMunicipio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnGenerar))
-                .addGap(38, 38, 38)
-                .addComponent(lblNublado)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(lblSoleados)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(lblLluviosos)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(lblParcial)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(lblVentosos)
-                .addContainerGap(223, Short.MAX_VALUE))
+                .addGap(89, 89, 89)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel14)
+                    .addComponent(lblNorte))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel15)
+                    .addComponent(lblSur))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel17)
+                    .addComponent(lblEste))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel13)
+                    .addComponent(lblOeste))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 140, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel7)
+                    .addComponent(lblPromedio))
+                .addGap(86, 86, 86))
+            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel1Layout.createSequentialGroup()
+                    .addGap(64, 64, 64)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(jPanel1Layout.createSequentialGroup()
+                            .addGap(13, 13, 13)
+                            .addComponent(jLabel18))
+                        .addComponent(jLabel16))
+                    .addGap(18, 18, 18)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel2)
+                        .addComponent(lblSoleado))
+                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel3)
+                        .addComponent(lblNublado))
+                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel4)
+                        .addComponent(lblParcial))
+                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel5)
+                        .addComponent(lblLluvioso))
+                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel6)
+                        .addComponent(lblVentoso))
+                    .addContainerGap(220, Short.MAX_VALUE)))
         );
 
         Tabla.addTab("Estadísticos", jPanel1);
@@ -210,7 +368,7 @@ public class Main extends javax.swing.JFrame {
         List<Clima> clima = Clima.obtener();
         DefaultTableModel modelo = (DefaultTableModel) tblClima.getModel();
         modelo.setRowCount(0);
-        
+
         for (Clima c : clima) {
             modelo.addRow(new Object[]{
                 c.getId(),
@@ -223,70 +381,70 @@ public class Main extends javax.swing.JFrame {
     }
 
     private void btnAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarActionPerformed
-        
+
         try {
             ClimaForm form = new ClimaForm(this, true, 0);
             form.setVisible(true);
-            
+
             cargarTable();
-            
+
         } catch (Exception e) {
         }
     }//GEN-LAST:event_btnAgregarActionPerformed
 
     private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
-        
+
         try {
             int reglon = tblClima.getSelectedRow();
             int idClima = Integer.parseInt(tblClima.getModel().getValueAt(reglon, 0).toString());
-            
+
             int decision = JOptionPane.showConfirmDialog(this, "¿Realmente deseas eliminar?", "Confirmar eliminación", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
-            
+
             System.out.println(decision);
-            
+
             if (decision == 0) {
-                
+
                 boolean resultado = Clima.eliminar(idClima);
-                
+
                 if (resultado) {
-                    
+
                     JOptionPane.showMessageDialog(this, "El registro se eliminó correctamente", "Registro eliminado", JOptionPane.INFORMATION_MESSAGE);
-                    
+
                 } else {
-                    
+
                     JOptionPane.showMessageDialog(this, "Ocurrió un error al intentar eliminar el registro", "Error al eliminar", JOptionPane.ERROR_MESSAGE);
-                    
+
                 }
-                
+
                 cargarTable();
-                
+
             } else if (decision == 1) {
-                
+
                 JOptionPane.showMessageDialog(this, "El registro no se eliminó", "Registro eliminado", JOptionPane.INFORMATION_MESSAGE);
-                
+
                 cargarTable();
             }
-            
+
         } catch (Exception e) {
         }
     }//GEN-LAST:event_btnEliminarActionPerformed
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
-        
+
         cargarTable();
         tblClima.removeColumn(tblClima.getColumnModel().getColumn(0));
 
     }//GEN-LAST:event_formWindowOpened
 
     private void btnEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarActionPerformed
-        
+
         try {
             int reglon = tblClima.getSelectedRow();
             int idClima = Integer.parseInt(tblClima.getModel().getValueAt(reglon, 0).toString());
-            
+
             ClimaForm form = new ClimaForm(this, true, idClima);
             form.setVisible(true);
-            
+
             cargarTable();
         } catch (Exception e) {
         }
@@ -298,48 +456,124 @@ public class Main extends javax.swing.JFrame {
     }//GEN-LAST:event_cmbMunicipioActionPerformed
 
     private void btnGenerarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGenerarActionPerformed
+        JFreeChart grafico;
+        DefaultCategoryDataset datos = new DefaultCategoryDataset();
+        
         int soleado = 0;
         int nublado = 0;
+        int parcial = 0;
         int lluvioso = 0;
         int ventoso = 0;
-        int parcial = 0;
+        int norte = 0;
+        int sur = 0;
+        int este = 0;
+        int oeste = 0;
+        double valor = 0.0;
+        double celsius = 0.0;
+        int cantidad = 0;
         
-        int contar = tblClima.getRowCount();
-        String clima = "";
-        for (int i = 0; i < contar; i++) {
-            clima = tblClima.getValueAt(i, 2).toString();
-            System.out.println(clima);
-            switch (clima) {
-                case "Soleado":
-                    soleado++;
-                    break;
-                case "Nublado":
-                    nublado++;
-                    break;
-                case "Lluvioso":
-                    lluvioso++;
-                    break;
-                case "Ventoso":
-                    ventoso++;
-                    break;
-                case "Parcialmente nublado":
-                    parcial++;
-                    break;
-                default:
-                    throw new AssertionError();
+        String municipioSeleccionado = cmbMunicipio.getSelectedItem().toString();
+
+        for (int i = 0; i < tblClima.getRowCount(); i++) {
+
+            celsius = Double.parseDouble(tblClima.getValueAt(i,3).toString());
+            
+            if (tblClima.getValueAt(i, 0).toString().equals(municipioSeleccionado)) {
+                
+                cantidad++;
+                
+                valor = valor + celsius;
+                
+                switch (tblClima.getValueAt(i, 2).toString()) {
+
+                    case "Soleado":
+                        soleado++;
+                        break;
+                    case "Nublado":
+                        nublado++;
+                        break;
+                    case "Parcialmente nublado":
+                        parcial++;
+                        break;
+                    case "Lluvioso":
+                        lluvioso++;
+                        break;
+                    case "Ventoso":
+                        ventoso++;
+                        break;
+
+                }
+                
+                switch (tblClima.getValueAt(i, 4).toString()) {
+
+                    case "Norte":
+                        norte++;
+                        break;
+                    case "Sur":
+                        sur++;
+                        break;
+                    case "Este":
+                        este++;
+                        break;
+                    case "Oeste":
+                        oeste++;
+                        break;
+
+                }
+                
+                datos.addValue(Double.parseDouble(tblClima.getValueAt(i, 3).toString()), tblClima.getValueAt(i,0).toString(), tblClima.getValueAt(i,1).toString());
+
             }
         }
-        
-        lblLluviosos.setText("Dias lluviosos: " + Integer.toString(lluvioso));
-        lblNublado.setText("Dias nublados: " + Integer.toString(nublado));
-        lblSoleados.setText("Dias soleados: " + Integer.toString(soleado));
-        lblVentosos.setText("Dias ventosos: " + Integer.toString(ventoso));
-        lblParcial.setText("Dias parcialmente nublados: " + Integer.toString(parcial));
+
+        if (soleado == 0 && nublado == 0 && parcial == 0 && lluvioso == 0 && ventoso == 0) {
+
+            JOptionPane.showMessageDialog(this, "Este municipio no cuenta con registros en la base de datos", "No hay registros", JOptionPane.ERROR_MESSAGE);
+
+            lblPromedio.setText(String.valueOf("---"));
+            lblSoleado.setText(String.valueOf("---"));
+            lblNublado.setText(String.valueOf("---"));
+            lblParcial.setText(String.valueOf("---"));
+            lblLluvioso.setText(String.valueOf("---"));
+            lblVentoso.setText(String.valueOf("---"));
+            lblNorte.setText(String.valueOf("---"));
+            lblSur.setText(String.valueOf("---"));
+            lblEste.setText(String.valueOf("---"));
+            lblOeste.setText(String.valueOf("---"));
+            
+            grafico = ChartFactory.createBarChart("Grafico de temperaturas", "Fechas", "Temperaturas (Celsius)", datos, PlotOrientation.VERTICAL, true, true, false);
+            ChartPanel panel = new ChartPanel(grafico);
+            add(panel);
+            panel.setBounds(240, 280, 600, 251);
+            panel.setVisible(false);
+            
+        } else {
+
+            DecimalFormat formato = new DecimalFormat("0.00");
+            double promedio = Double.parseDouble(formato.format(valor / cantidad).toUpperCase());
+            
+            lblPromedio.setText(String.valueOf(promedio));
+            lblSoleado.setText(String.valueOf(soleado));
+            lblNublado.setText(String.valueOf(nublado));
+            lblParcial.setText(String.valueOf(parcial));
+            lblLluvioso.setText(String.valueOf(lluvioso));
+            lblVentoso.setText(String.valueOf(ventoso));
+            lblNorte.setText(String.valueOf(norte));
+            lblSur.setText(String.valueOf(sur));
+            lblEste.setText(String.valueOf(este));
+            lblOeste.setText(String.valueOf(oeste));
+            
+            grafico = ChartFactory.createBarChart("Grafico de temperaturas", "Fechas", "Temperaturas (Celsius)", datos, PlotOrientation.VERTICAL, true, true, false);
+            ChartPanel panel = new ChartPanel(grafico);
+            add(panel);
+            panel.setBounds(240, 280, 600, 251);
+            
+        }
     }//GEN-LAST:event_btnGenerarActionPerformed
 
     /**
-     * @param args the command line arguments
-     */
+         * @param args the command line arguments
+         */
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -366,6 +600,7 @@ public class Main extends javax.swing.JFrame {
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
+            @Override
             public void run() {
                 new Main().setVisible(true);
             }
@@ -380,16 +615,33 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JButton btnGenerar;
     private javax.swing.JComboBox<String> cmbMunicipio;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel13;
+    private javax.swing.JLabel jLabel14;
+    private javax.swing.JLabel jLabel15;
+    private javax.swing.JLabel jLabel16;
+    private javax.swing.JLabel jLabel17;
+    private javax.swing.JLabel jLabel18;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator1;
-    private javax.swing.JLabel lblLluviosos;
+    private javax.swing.JLabel lblEste;
+    private javax.swing.JLabel lblLluvioso;
+    private javax.swing.JLabel lblNorte;
     private javax.swing.JLabel lblNublado;
+    private javax.swing.JLabel lblOeste;
     private javax.swing.JLabel lblParcial;
-    private javax.swing.JLabel lblSoleados;
-    private javax.swing.JLabel lblVentosos;
+    private javax.swing.JLabel lblPromedio;
+    private javax.swing.JLabel lblSoleado;
+    private javax.swing.JLabel lblSur;
+    private javax.swing.JLabel lblVentoso;
     private javax.swing.JMenu mnuEdicion;
     private javax.swing.JTable tblClima;
     // End of variables declaration//GEN-END:variables

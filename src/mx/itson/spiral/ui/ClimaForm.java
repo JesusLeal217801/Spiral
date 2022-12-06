@@ -154,9 +154,14 @@ public class ClimaForm extends javax.swing.JDialog {
 
         cmbClima.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         cmbClima.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccionar clima", "Soleado", "Nublado", "Parcialmente nublado", "Lluvioso", "Ventoso" }));
+        cmbClima.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cmbClimaActionPerformed(evt);
+            }
+        });
 
         spnGrados.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        spnGrados.setModel(new javax.swing.SpinnerNumberModel(0.0d, -90.0d, 60.0d, 0.1d));
+        spnGrados.setModel(new javax.swing.SpinnerNumberModel(0.0d, -90.0d, 60.0d, 0.0d));
 
         cmbViento.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         cmbViento.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccionar dirección", "Norte", "Sur", "Este", "Oeste" }));
@@ -290,6 +295,10 @@ public class ClimaForm extends javax.swing.JDialog {
         }
         
     }//GEN-LAST:event_btnGuardarActionPerformed
+
+    private void cmbClimaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbClimaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cmbClimaActionPerformed
 
     /**
      * @param args the command line arguments
