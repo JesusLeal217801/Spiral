@@ -165,7 +165,7 @@ public class Main extends javax.swing.JFrame {
     private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
         
         int reglon = tblClima.getSelectedRow();
-        int idComputadora = Integer.parseInt(tblClima.getModel().getValueAt(reglon, 0).toString());
+        int idClima = Integer.parseInt(tblClima.getModel().getValueAt(reglon, 0).toString());
 
         int decision = JOptionPane.showConfirmDialog(this, "¿Realmente deseas eliminar?", "Confirmar eliminación", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
 
@@ -173,7 +173,7 @@ public class Main extends javax.swing.JFrame {
 
         if (decision == 0) {
 
-            boolean resultado = Clima.eliminar(idComputadora);
+            boolean resultado = Clima.eliminar(idClima);
 
             if (resultado) {
 

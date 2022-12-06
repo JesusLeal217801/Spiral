@@ -5,8 +5,8 @@
  */
 package mx.itson.spiral.ui;
 
-import java.util.Date;
 import java.text.SimpleDateFormat;
+import java.util.Date;
 import javax.swing.JOptionPane;
 import mx.itson.spiral.entidades.Clima;
 
@@ -20,15 +20,17 @@ public class ClimaForm extends javax.swing.JDialog {
     /**
      * Creates new form ClimaForm
      */
-    public ClimaForm(java.awt.Frame parent, boolean modal, int id) {
+    public ClimaForm(java.awt.Frame parent, boolean modal, int id){
         super(parent, modal);
         initComponents();
         this.id = id;
         
+        SimpleDateFormat formato = new SimpleDateFormat("yyyy-MM-dd"); 
+        
         if(id != 0){
             
             Clima c = Clima.obtenerPorId(id);
-
+            
             cmbMunicipio.setSelectedItem(c.getMunicipio());
             jdtFecha.setDate(c.getFecha());
             cmbClima.setSelectedItem(c.getClima());

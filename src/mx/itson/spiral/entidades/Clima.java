@@ -59,12 +59,15 @@ public class Clima {
 
     public static boolean guardar(String municipio, Date fecha, String clima, Double grados, String viento) {
         boolean resultado = false;
+        
+        java.sql.Date fechaDos = new java.sql.Date(fecha.getTime());
+        
         try {
             Connection conexion = Conexion.obtener();
             String consulta = "INSERT INTO clima (municipio, fecha, clima, gradosCelsius, vientoDireccion) VALUES (?, ?, ?, ?, ?)";
             PreparedStatement statement = conexion.prepareStatement(consulta);
             statement.setString(1, municipio);
-            statement.setString(2, fecha.toString());
+            statement.setDate(2, fechaDos);
             statement.setString(3, clima);
             statement.setDouble(4, grados);
             statement.setString(5, viento);
@@ -84,12 +87,14 @@ public class Clima {
     public static boolean editar(int id, String municipio, Date fecha, String clima, Double grados, String viento) {
         boolean resultado = false;
         
+        java.sql.Date fechaDos = new java.sql.Date(fecha.getTime());
+        
         try{
             Connection conexion = Conexion.obtener();
             String consulta = "UPDATE clima SET municipio = ?, fecha = ?, clima = ?, gradosCelsius = ?, vientoDireccion = ? WHERE id = ?";
             PreparedStatement statement = conexion.prepareStatement(consulta);
             statement.setString(1, municipio);
-            statement.setString(2, fecha.toString());
+            statement.setDate(2, fechaDos);
             statement.setString(3, clima);
             statement.setDouble(4, grados);
             statement.setString(5, viento);
@@ -133,7 +138,7 @@ public class Clima {
 
         try {
             Connection conexion = Conexion.obtener();
-            String consulta = "SELECT id, marca, modelo,color, ram, procesador, almacenamiento, os FROM computadora WHERE id = ?";
+            String consulta = "SELECT municipio, fecha, clima, gradosCelsius, vientoDireccion FROM clima WHERE id = ?";
             PreparedStatement statement = conexion.prepareStatement(consulta);
             statement.setInt(1, id);
             
