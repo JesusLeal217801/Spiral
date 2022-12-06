@@ -166,7 +166,7 @@ public class Main extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-    
+
     private void cargarTable() {
         List<Clima> clima = Clima.obtener();
         DefaultTableModel modelo = (DefaultTableModel) tblClima.getModel();
@@ -179,82 +179,88 @@ public class Main extends javax.swing.JFrame {
                 c.getFecha(),
                 c.getClima(),
                 c.getGradosCelsius(),
-                c.getVientoDireccion(),
-
-            });
+                c.getVientoDireccion(),});
         }
     }
-    
+
     private void btnAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarActionPerformed
-        
-        ClimaForm form = new ClimaForm(this, true, 0);
-        form.setVisible(true);
-        
-        cargarTable();
-        
+
+        try {
+            ClimaForm form = new ClimaForm(this, true, 0);
+            form.setVisible(true);
+
+            cargarTable();
+
+        } catch (Exception e) {
+        }
     }//GEN-LAST:event_btnAgregarActionPerformed
 
     private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
-        
-        int reglon = tblClima.getSelectedRow();
-        int idClima = Integer.parseInt(tblClima.getModel().getValueAt(reglon, 0).toString());
 
-        int decision = JOptionPane.showConfirmDialog(this, "¿Realmente deseas eliminar?", "Confirmar eliminación", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+        try {
+            int reglon = tblClima.getSelectedRow();
+            int idClima = Integer.parseInt(tblClima.getModel().getValueAt(reglon, 0).toString());
 
-        System.out.println(decision);
+            int decision = JOptionPane.showConfirmDialog(this, "¿Realmente deseas eliminar?", "Confirmar eliminación", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
 
-        if (decision == 0) {
+            System.out.println(decision);
 
-            boolean resultado = Clima.eliminar(idClima);
+            if (decision == 0) {
 
-            if (resultado) {
+                boolean resultado = Clima.eliminar(idClima);
 
-                JOptionPane.showMessageDialog(this, "El registro se eliminó correctamente", "Registro eliminado", JOptionPane.INFORMATION_MESSAGE);
+                if (resultado) {
 
-            } else {
+                    JOptionPane.showMessageDialog(this, "El registro se eliminó correctamente", "Registro eliminado", JOptionPane.INFORMATION_MESSAGE);
 
-                JOptionPane.showMessageDialog(this, "Ocurrió un error al intentar eliminar el registro", "Error al eliminar", JOptionPane.ERROR_MESSAGE);
+                } else {
 
+                    JOptionPane.showMessageDialog(this, "Ocurrió un error al intentar eliminar el registro", "Error al eliminar", JOptionPane.ERROR_MESSAGE);
+
+                }
+
+                cargarTable();
+
+            } else if (decision == 1) {
+
+                JOptionPane.showMessageDialog(this, "El registro no se eliminó", "Registro eliminado", JOptionPane.INFORMATION_MESSAGE);
+
+                cargarTable();
             }
 
-            cargarTable();
-
-        } else if (decision == 1) {
-
-            JOptionPane.showMessageDialog(this, "El registro no se eliminó", "Registro eliminado", JOptionPane.INFORMATION_MESSAGE);
-
-            cargarTable();
+        } catch (Exception e) {
         }
-        
     }//GEN-LAST:event_btnEliminarActionPerformed
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
-        
+
         cargarTable();
         tblClima.removeColumn(tblClima.getColumnModel().getColumn(0));
-        
+
     }//GEN-LAST:event_formWindowOpened
 
     private void btnEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarActionPerformed
-        
-        int reglon = tblClima.getSelectedRow();
-        int idClima = Integer.parseInt(tblClima.getModel().getValueAt(reglon, 0).toString());
 
-        ClimaForm form = new ClimaForm(this, true, idClima);
-        form.setVisible(true);
+        try {
+            int reglon = tblClima.getSelectedRow();
+            int idClima = Integer.parseInt(tblClima.getModel().getValueAt(reglon, 0).toString());
 
-        cargarTable();
-        
+            ClimaForm form = new ClimaForm(this, true, idClima);
+            form.setVisible(true);
+
+            cargarTable();
+        } catch (Exception e) {
+        }
+
     }//GEN-LAST:event_btnEditarActionPerformed
 
     private void cmbMunicipioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbMunicipioActionPerformed
-        
+
     }//GEN-LAST:event_cmbMunicipioActionPerformed
 
     private void btnGenerarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGenerarActionPerformed
-        
-        
-        
+
+
     }//GEN-LAST:event_btnGenerarActionPerformed
 
     /**
